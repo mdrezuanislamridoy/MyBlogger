@@ -81,6 +81,7 @@ const HomePage = () => {
         </div>
       </section>
       <CommentSection></CommentSection>
+      <br />
     </div>
   );
 };

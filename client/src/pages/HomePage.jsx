@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import axiosInstance from "../utilities/AxiosInstance";
+import { Link } from "react-router-dom";
+import CommentSection from "../components/Comments";
 
 const HomePage = () => {
   const [blogs, setBlogs] = useState([]);
@@ -33,7 +35,7 @@ const HomePage = () => {
         </p>
         <a
           href="#blogs"
-          className="px-6 py-3 bg-white text-blue-600 rounded-lg font-semibold hover:bg-gray-200"
+          className="px-6 py-3 bg-white text-slate-600 rounded-lg font-semibold hover:bg-gray-200"
         >
           Discover Blogs
         </a>
@@ -66,7 +68,7 @@ const HomePage = () => {
                     </p>
                     <a
                       href={`/blogs/${blog._id}`}
-                      className="text-blue-500 hover:underline font-semibold"
+                      className="text-gray-500 hover:underline font-semibold"
                     >
                       Read More →
                     </a>
@@ -79,14 +81,7 @@ const HomePage = () => {
           )}
         </div>
       </section>
-
-      <footer className="bg-gray-800 text-white py-6 mt-12">
-        <div className="container mx-auto text-center">
-          <p className="text-sm">
-            © {new Date().getFullYear()} RR-Blogger. All Rights Reserved.
-          </p>
-        </div>
-      </footer>
+      <CommentSection></CommentSection>
     </div>
   );
 };

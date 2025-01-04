@@ -11,6 +11,7 @@ import NotFoundPage from "./pages/NotFoundPage";
 import Dashboard from "./pages/Dashboard";
 import Navbar from "./components/Navbar";
 import HomePage from "./pages/HomePage";
+import Footer from "./components/Footer";
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -62,6 +63,7 @@ const App = () => {
         />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
+      {isLoggedIn && <Footer />}
     </Router>
   );
 };

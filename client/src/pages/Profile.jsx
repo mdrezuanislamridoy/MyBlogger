@@ -5,6 +5,7 @@ import user from "../assets/user.jpeg";
 
 const Profile = ({ setIsLoggedIn }) => {
   const [userInfo, setUserInfo] = useState(null);
+  const [blogs, setBlogs] = useState([]);
 
   useEffect(() => {
     const fetchUserInfo = async () => {
@@ -17,6 +18,19 @@ const Profile = ({ setIsLoggedIn }) => {
       }
     };
     fetchUserInfo();
+  }, []);
+
+  useEffect(() => {
+    const fetchThisUserBlog = async () => {
+      try {
+        const email = localStorage.getItem("userEmail");
+        const response = await axiosInstance.get(`/api/blogs/${email}`);
+        setBlogs(response.data.blogs);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchThisUserBlog();
   }, []);
 
   const handleLogout = () => {
@@ -57,6 +71,28 @@ const Profile = ({ setIsLoggedIn }) => {
         >
           Log Out
         </button>
+      </div>
+      <br />
+      <h2 className="text-2xl font-bold mb-2">My Blogs:</h2>
+      <div className="h-[500px] overflow-scroll px-4">
+        <br />
+        {blogs.length > 0 ? (
+          blogs.map(
+            (blog) =>
+              blog && (
+                <div
+                  key={blog._id}
+                  className="bg-white p-4 rounded shadow-md mb-4 w-96 mt-2"
+                >
+                  <h3 className="text-lg font-bold">{blog.title}</h3>
+                  <p className="text-sm text-gray-700">By: {blog.author}</p>
+                  <p className="text-gray-800 mt-2">{blog.content}</p>
+                </div>
+              )
+          )
+        ) : (
+          <p className="text-gray-700">No blogs found.</p>
+        )}
       </div>
     </div>
   );

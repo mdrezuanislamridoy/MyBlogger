@@ -20,3 +20,12 @@ exports.addBlog = async (req, res) => {
     res.status(500).json({ message: "Server error", error: error.message });
   }
 };
+exports.getMyBlogs = async (req, res) => {
+  const email = req.params.email;
+  if (!email) {
+    res.status(500).json({ message: "User not found" });
+  }
+  const findBlogs = await Blog.find({ author: email });
+
+  res.status(200).json({ blogs: findBlogs });
+};

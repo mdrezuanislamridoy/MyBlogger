@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import axiosInstance from "../utilities/AxiosInstance";
-import { Link } from "react-router-dom";
 import CommentSection from "../components/Comments";
 
 const HomePage = () => {
